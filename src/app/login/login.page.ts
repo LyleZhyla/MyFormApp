@@ -12,12 +12,12 @@ import { Router, RouterModule } from '@angular/router';
     IonicModule,
     RouterModule // Required for routerLink directive
   ],
-  selector: 'app-home ',
+  selector: 'app-login ',
   templateUrl: 'login.page.html', 
   styleUrls: ['login.page.scss'],
 
 })
-export class HomePage {
+export class LoginPage {
   username: string = '';
   password: string = '';
 

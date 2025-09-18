@@ -24,6 +24,31 @@
     </ion-item>
   </ion-list>
 
+  <!-- Price Range Filter -->
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Price Range</ion-label>
+      <ion-range
+        min="0"
+        max="200"
+        dual-knobs="true"
+        pin="true"
+        color="secondary"
+        [(ngModel)]="priceRange"
+        (ionChange)="filterProducts()"
+      >
+        <ion-icon slot="start" size="small" name="cash-outline"></ion-icon>
+        <ion-icon slot="end" name="cash-outline"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <p class="ion-text-center">
+    Showing products between
+    <strong>${{ priceRange.lower }}</strong> and
+    <strong>${{ priceRange.upper }}</strong>
+  </p>
+
   <!-- Products -->
   <h2 class="ion-text-center">Featured Products</h2>
   <ion-grid>
@@ -33,11 +58,16 @@
         size-sm="6"
         size-md="4"
         size-lg="3"
-        *ngFor="let product of products"
+        *ngFor="let product of filteredProducts"
         class="ion-text-center"
       >
         <ion-card>
-          <img [src]="product.imageUrl" alt="Product Image" />
+          <img
+            [src]="product.imageUrl"
+            alt="Product Image"
+            width="300"
+            height="200"
+          />
 
           <ion-card-header>
             <ion-card-title>{{ product.name }}</ion-card-title>
@@ -59,6 +89,13 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <!-- No products found -->
+  <div *ngIf="filteredProducts.length === 0" class="ion-text-center ion-margin-top">
+    <ion-text color="medium">
+      <p>No products found in this price range.</p>
+    </ion-text>
+  </div>
 </ion-content>
 
 <ion-footer>
