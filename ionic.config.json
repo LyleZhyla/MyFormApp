@@ -1,0 +1,7 @@
+{
+  "name": "MyFormApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
