@@ -1,41 +1,46 @@
-
-import { Component } from '@angular/core'; import { CommonModule } from '@angular/common'; 
-import { FormsModule, NgForm } from '@angular/forms'; 
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule // Required for routerLink directive
+    RouterModule // Required for routerLink or navigate
   ],
-  selector: 'app-login ',
-  templateUrl: 'login.page.html', 
-  styleUrls: ['login.page.scss'],
-
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
   username: string = '';
   password: string = '';
 
-constructor(private router: Router) {}
+  constructor(private router: Router) {}
 
-onLogin(form: NgForm) {
+  // Login method with dummy credentials
+  onLogin(form: NgForm) {
+    const dummyUser = 'user';
+    const dummyPass = 'password';
+
     if (form.valid) {
-      console.log('Login successful', form.value);
-      alert('Login Successful');
-
+      if (this.username === dummyUser && this.password === dummyPass) {
+        this.router.navigateByUrl('/main-app/home');
+        alert('Login successful');
+      } else {
+        alert('Login failed. Use user / password');
+      }
     } else {
-      console.log('Login failed.');
       alert('Please fill out all fields');
     }
   }
 
-
-  goToRegistration(){
+  // Navigate to registration page
+  goToRegistration() {
     this.router.navigate(['/registration']);
   }
 }

@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, MenuController } from '@ionic/angular';
 import { RouterModule } from '@angular/router'; // ✅ Import this for routerLink
 
 @Component({
@@ -14,10 +14,9 @@ import { RouterModule } from '@angular/router'; // ✅ Import this for routerLin
     CommonModule,
     IonicModule,
     FormsModule,
-    RouterModule, // ✅ Add this
+    RouterModule, // ✅ Required for routerLink
   ],
 })
-
 export class HomePage implements OnInit {
   user = {
     name: 'John Doe',
@@ -71,10 +70,9 @@ export class HomePage implements OnInit {
     },
   ];
 
-  // ✅ Store filtered products separately
   filteredProducts: any[] = [];
 
-  constructor() {}
+  constructor(private menuCtrl: MenuController) {} // ✅ Inject MenuController
 
   ngOnInit() {
     // show all products initially
@@ -87,5 +85,10 @@ export class HomePage implements OnInit {
       (p) =>
         p.price >= this.priceRange.lower && p.price <= this.priceRange.upper
     );
+  }
+
+  // ✅ Open the side menu
+  openMenu() {
+    this.menuCtrl.open('main-menu');
   }
 }
