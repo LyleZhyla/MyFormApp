@@ -24,12 +24,16 @@ export const routes: Routes = [
   {
     path: 'category-details',
     loadComponent: () =>
-      import('./category-details/category-details.page').then((m) => m.CategoryDetailsPage),
+      import('./category-details/category-details.page').then(
+        (m) => m.CategoryDetailsPage
+      ),
   },
   {
     path: 'product-details/:id',
     loadComponent: () =>
-      import('./product-details/product-details.page').then((m) => m.ProductDetailsPage),
+      import('./product-details/product-details.page').then(
+        (m) => m.ProductDetailsPage
+      ),
   },
   {
     path: 'main-app',
@@ -43,16 +47,47 @@ export const routes: Routes = [
       },
       {
         path: 'my-account',
-        loadComponent: () =>
-          import('./main-app/my-account/my-account.page').then((m) => m.MyAccountPage),
+        loadChildren: () =>
+          import('./main-app/my-account/my-account.routes').then(
+            (m) => m.MY_ACCOUNT_ROUTES
+          ),
       },
       {
         path: 'my-purchases',
         loadComponent: () =>
-          import('./main-app/my-purchases/my-purchases.page').then((m) => m.MyPurchasesPage),
+          import('./main-app/my-purchases/my-purchases.page').then(
+            (m) => m.MyPurchasesPage
+          ),
       },
-      // Add more child routes under main-app here if needed
     ],
+  },
+  {
+    path: 'addresses',
+    loadComponent: () =>
+      import(
+        './main-app/my-account/addresses/addresses.page'
+      ).then((m) => m.AddressesPage),
+  },
+  {
+    path: 'banks-and-cards',
+    loadComponent: () =>
+      import(
+        './main-app/my-account/banks-and-cards/banks-and-cards.page'
+      ).then((m) => m.BanksAndCardsPage),
+  },
+  {
+    path: 'change-password',
+    loadComponent: () =>
+      import(
+        './main-app/my-account/change-password/change-password.page'
+      ).then((m) => m.ChangePasswordPage),
+  },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./main-app/my-account/profile/profile.page').then(
+        (m) => m.ProfilePage
+      ),
   },
   {
     path: '**',

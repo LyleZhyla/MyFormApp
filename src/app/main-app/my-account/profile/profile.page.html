@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form">
+
+    <!-- Full Name -->
+    <ion-item>
+      <ion-label position="stacked">Full Name</ion-label>
+      <ion-input formControlName="fullName" placeholder="Juan Dela Cruz"></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="form.get('fullName')?.touched && form.get('fullName')?.invalid">
+      Name is required.
+    </ion-note>
+
+    <!-- Email -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" formControlName="email" placeholder="juan@example.com"></ion-input>
+    </ion-item>
+    <ion-note color="danger" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+      Valid email required.
+    </ion-note>
+
+    <!-- Phone -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Phone</ion-label>
+      <ion-input inputmode="numeric" formControlName="phone" placeholder="09XXXXXXXXX"></ion-input>
+    </ion-item>
+
+    <!-- Avatar URL -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Avatar URL (optional)</ion-label>
+      <ion-input formControlName="avatarUrl" placeholder="https://..."></ion-input>
+    </ion-item>
+
+    <!-- Save Button -->
+    <ion-button expand="block" class="ion-margin-top" (click)="save()">
+      Save Profile
+    </ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Banks & Cards</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" autocomplete="off">
+
+    <!-- Bank Name -->
+    <ion-item>
+      <ion-label position="stacked">Bank Name</ion-label>
+      <ion-input formControlName="bankName" placeholder="BPI / BDO / Metrobank"></ion-input>
+    </ion-item>
+
+    <!-- Cardholder -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Cardholder</ion-label>
+      <ion-input formControlName="cardholder" placeholder="JUAN DELA CRUZ"></ion-input>
+    </ion-item>
+
+    <!-- Card Number -->
+    <ion-item class="ion-margin-top">
+      <ion-label position="stacked">Card Number</ion-label>
+      <ion-input 
+        formControlName="cardNumber" 
+        inputmode="numeric" 
+        maxlength="16" 
+        placeholder="1111222233334444">
+      </ion-input>
+    </ion-item>
+
+    <ion-note color="medium">
+      For demo only. Do not enter real card data.
+    </ion-note>
+
+    <!-- Expiry and CVV -->
+    <ion-grid class="ion-margin-top">
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Expiry (MM/YY)</ion-label>
+            <ion-input formControlName="expiry" placeholder="08/27"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">CVV</ion-label>
+            <ion-input formControlName="cvv" inputmode="numeric" maxlength="4" placeholder="123"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Save Button -->
+    <ion-button expand="block" class="ion-margin-top" (click)="save()">
+      Save Card
+    </ion-button>
+
+  </form>
+</ion-content>
