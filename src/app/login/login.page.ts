@@ -13,8 +13,8 @@ import { Router, RouterModule } from '@angular/router';
     RouterModule // Required for routerLink directive
   ],
   selector: 'app-home ',
-  templateUrl: 'home.page.html', 
-  styleUrls: ['home.page.scss'],
+  templateUrl: 'login.page.html', 
+  styleUrls: ['login.page.scss'],
 
 })
 export class HomePage {
