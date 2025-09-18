@@ -93,4 +93,28 @@ export const routes: Routes = [
     path: '**',
     redirectTo: 'login',
   },
+  {
+    path: 'my-purchases',
+    loadComponent: () => import('./main-app/my-purchases/my-purchases/my-purchases.page').then( m => m.MyPurchasesPage)
+  },
+  {
+    path: 'to-pay',
+    loadComponent: () => import('./main-app/my-purchases/to-pay/to-pay.page').then( m => m.ToPayPage)
+  },
+  {
+    path: 'to-ship',
+    loadComponent: () => import('./main-app/my-purchases/to-ship/to-ship.page').then( m => m.ToShipPage)
+  },
+  {
+    path: 'to-receive',
+    loadComponent: () => import('./main-app/my-purchases/to-receive/to-receive.page').then( m => m.ToReceivePage)
+  },
+  {
+    path: 'completed',
+    loadComponent: () => import('./main-app/my-purchases/completed/completed.page').then( m => m.CompletedPage)
+  },
+  {
+    path: 'cancelled',
+    loadComponent: () => import('./main-app/my-purchases/cancelled/cancelled.page').then( m => m.CancelledPage)
+  },
 ];

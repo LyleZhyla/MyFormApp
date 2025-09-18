@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>my-purchases</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/main-app/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Purchases</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">my-purchases</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="to-pay" routerLink="to-pay">
+        <ion-label>To Pay</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="to-ship" routerLink="to-ship">
+        <ion-label>To Ship</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="to-receive" routerLink="to-receive">
+        <ion-label>To Receive</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="completed" routerLink="completed">
+        <ion-label>Completed</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="cancelled" routerLink="cancelled">
+        <ion-label>Cancelled</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+
+    <ion-router-outlet></ion-router-outlet>
+  </ion-tabs>
 </ion-content>
