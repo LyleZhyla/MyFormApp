@@ -1,16 +1,23 @@
 // src/app/home/home.page.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms'; // ✅ Needed for ngModel
+import { RouterModule } from '@angular/router'; // ✅ Import this for routerLink
 
 @Component({
   standalone: true,
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  imports: [CommonModule, IonicModule, FormsModule],
+  imports: [
+    CommonModule,
+    IonicModule,
+    FormsModule,
+    RouterModule, // ✅ Add this
+  ],
 })
+
 export class HomePage implements OnInit {
   user = {
     name: 'John Doe',
