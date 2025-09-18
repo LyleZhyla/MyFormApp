@@ -9,12 +9,7 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-registration',
   templateUrl: './registration.page.html',
   styleUrls: ['./registration.page.scss'],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule
-  ]
+  imports: [CommonModule, FormsModule, IonicModule, RouterModule],
 })
 export class RegistrationPage implements OnInit {
   // User details
@@ -23,7 +18,7 @@ export class RegistrationPage implements OnInit {
   middleName: string = '';
   email: string = '';
   contactNumber: string = '';
-  birthdate: string = '';   // bound to ion-datetime
+  birthdate: string | null = null; // ✅ bound to ion-datetime
 
   // Other form fields
   acceptedTerms: boolean = false;
@@ -35,14 +30,14 @@ export class RegistrationPage implements OnInit {
 
   ngOnInit() {}
 
-  // ✅ Helper method to format date
-  private formatDate(isoString: string): string {
+  // ✅ Format birthdate for display/submit
+  formatDate(isoString: string | null): string {
     if (!isoString) return '';
     const date = new Date(isoString);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
   }
 
@@ -52,10 +47,9 @@ export class RegistrationPage implements OnInit {
 
       console.log('Registration successful!', {
         ...form.value,
-        birthdate: formattedBirthdate
+        birthdate: formattedBirthdate,
       });
 
-      alert(`Registration Successful!\nBirthdate: ${formattedBirthdate}`);
 
       this.router.navigate(['/home']);
     } else {

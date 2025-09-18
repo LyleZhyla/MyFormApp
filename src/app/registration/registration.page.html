@@ -9,91 +9,63 @@
     <ion-list>
       <ion-item>
         <ion-label position="floating">Last Name</ion-label>
-        <ion-input
-          type="text"
-          name="lastName"
-          [(ngModel)]="lastName"
-          required>
-        </ion-input>
+        <ion-input type="text" name="lastName" [(ngModel)]="lastName" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">First Name</ion-label>
-        <ion-input
-          type="text"
-          name="firstName"
-          [(ngModel)]="firstName"
-          required>
-        </ion-input>
+        <ion-input type="text" name="firstName" [(ngModel)]="firstName" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Middle Name</ion-label>
-        <ion-input
-          type="text"
-          name="middleName"
-          [(ngModel)]="middleName">
-        </ion-input>
+        <ion-input type="text" name="middleName" [(ngModel)]="middleName"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Email Address</ion-label>
-        <ion-input
-          type="email"
-          name="email"
-          [(ngModel)]="email"
-          required>
-        </ion-input>
+        <ion-input type="email" name="email" [(ngModel)]="email" required></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Contact Number</ion-label>
-        <ion-input
-          type="tel"
-          name="contactNumber"
-          [(ngModel)]="contactNumber">
-        </ion-input>
+        <ion-input type="tel" name="contactNumber" [(ngModel)]="contactNumber"></ion-input>
       </ion-item>
 
-      <!-- ✅ Birthdate Picker with Button -->
+      <!-- ✅ Birthdate Picker -->
       <ion-item>
         <ion-label position="stacked">Birthdate</ion-label>
-        
-        <!-- This button will open the date picker -->
+
+        <!-- This button opens the date picker -->
         <ion-datetime-button datetime="birthdate"></ion-datetime-button>
 
-        <!-- The modal where the datetime will appear -->
+        <!-- The modal containing the date picker -->
         <ion-modal [keepContentsMounted]="true">
           <ng-template>
             <ion-datetime
               id="birthdate"
-              presentation="date"
+              presentation="date"   
               name="birthdate"
               [(ngModel)]="birthdate"
               required
-              prefer-wheel="true">
+              prefer-wheel="true">   <!-- 👈 Enables scroll wheel when available -->
             </ion-datetime>
           </ng-template>
         </ion-modal>
       </ion-item>
 
 
+      <!-- ✅ Terms -->
       <ion-item>
         <ion-label>I accept the terms and conditions</ion-label>
-        <ion-checkbox
-          slot="start"
-          name="acceptedTerms"
-          [(ngModel)]="acceptedTerms"
-          required>
-        </ion-checkbox>
+        <ion-checkbox slot="start" name="acceptedTerms" [(ngModel)]="acceptedTerms" required></ion-checkbox>
       </ion-item>
 
+      <!-- ✅ Plans -->
       <ion-list-header>
         <ion-label>Choose your plan</ion-label>
       </ion-list-header>
-      <ion-radio-group
-        name="selectedPlan"
-        [(ngModel)]="selectedPlan">
+      <ion-radio-group name="selectedPlan" [(ngModel)]="selectedPlan">
         <ion-item>
           <ion-label>Free</ion-label>
           <ion-radio slot="start" value="free"></ion-radio>
@@ -108,21 +80,16 @@
         </ion-item>
       </ion-radio-group>
 
+      <!-- ✅ Notifications -->
       <ion-item>
         <ion-label>Enable Email Notifications</ion-label>
-        <ion-toggle
-          slot="end"
-          name="emailNotifications"
-          [(ngModel)]="emailNotifications">
-        </ion-toggle>
+        <ion-toggle slot="end" name="emailNotifications" [(ngModel)]="emailNotifications"></ion-toggle>
       </ion-item>
 
+      <!-- ✅ Country -->
       <ion-item>
         <ion-label position="floating">Country</ion-label>
-        <ion-select
-          name="country"
-          [(ngModel)]="country"
-          placeholder="Select One">
+        <ion-select name="country" [(ngModel)]="country" placeholder="Select One">
           <ion-select-option value="ph">Philippines</ion-select-option>
           <ion-select-option value="us">United States</ion-select-option>
           <ion-select-option value="ca">Canada</ion-select-option>
@@ -130,22 +97,14 @@
       </ion-item>
     </ion-list>
 
-    <ion-button
-      expand="block"
-      type="submit"
-      [disabled]="!registrationForm.valid"
-      class="ion-margin-top">
+    <ion-button expand="block" type="submit" [disabled]="!registrationForm.valid" class="ion-margin-top">
       Register
     </ion-button>
   </form>
 
   <ion-footer>
     <ion-toolbar>
-      <ion-button
-        expand="block"
-        fill="clear"
-        class="ion-margin-top"
-        [routerLink]="['/home']">
+      <ion-button expand="block" fill="clear" class="ion-margin-top" [routerLink]="['/home']">
         Already have an account? Go back to login.
       </ion-button>
     </ion-toolbar>
