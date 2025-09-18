@@ -1,120 +1,42 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full',
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
-    loadComponent: () =>
-      import('./login/login.page').then((m) => m.LoginPage),
+    loadComponent: () => import('./login/login.page').then(m => m.LoginPage),
   },
   {
     path: 'registration',
-    loadComponent: () =>
-      import('./registration/registration.page').then((m) => m.RegistrationPage),
+    loadComponent: () => import('./registration/registration.page').then(m => m.RegistrationPage),
   },
   {
     path: 'product-list',
-    loadComponent: () =>
-      import('./product-list/product-list.page').then((m) => m.ProductListPage),
+    loadComponent: () => import('./product-list/product-list.page').then(m => m.ProductListPage),
   },
   {
     path: 'category-details',
-    loadComponent: () =>
-      import('./category-details/category-details.page').then(
-        (m) => m.CategoryDetailsPage
-      ),
+    loadComponent: () => import('./category-details/category-details.page').then(m => m.CategoryDetailsPage),
   },
   {
     path: 'product-details/:id',
-    loadComponent: () =>
-      import('./product-details/product-details.page').then(
-        (m) => m.ProductDetailsPage
-      ),
+    loadComponent: () => import('./product-details/product-details.page').then(m => m.ProductDetailsPage),
   },
   {
     path: 'main-app',
-    loadComponent: () =>
-      import('./main-app/main-app.page').then((m) => m.MainAppPage),
+    loadComponent: () => import('./main-app/main-app.page').then(m => m.MainAppPage),
     children: [
-      {
-        path: 'home',
-        loadComponent: () =>
-          import('./main-app/home/home.page').then((m) => m.HomePage),
-      },
+      { path: 'home', loadComponent: () => import('./main-app/home/home.page').then(m => m.HomePage) },
       {
         path: 'my-account',
-        loadChildren: () =>
-          import('./main-app/my-account/my-account.routes').then(
-            (m) => m.MY_ACCOUNT_ROUTES
-          ),
+        loadChildren: () => import('./main-app/my-account/my-account.routes').then(m => m.MY_ACCOUNT_ROUTES),
       },
       {
         path: 'my-purchases',
-        loadComponent: () =>
-          import('./main-app/my-purchases/my-purchases.page').then(
-            (m) => m.MyPurchasesPage
-          ),
+        loadChildren: () => import('./main-app/my-purchases/my-purchases.routes').then(m => m.MY_PURCHASES_ROUTES),
       },
     ],
   },
-  {
-    path: 'addresses',
-    loadComponent: () =>
-      import(
-        './main-app/my-account/addresses/addresses.page'
-      ).then((m) => m.AddressesPage),
-  },
-  {
-    path: 'banks-and-cards',
-    loadComponent: () =>
-      import(
-        './main-app/my-account/banks-and-cards/banks-and-cards.page'
-      ).then((m) => m.BanksAndCardsPage),
-  },
-  {
-    path: 'change-password',
-    loadComponent: () =>
-      import(
-        './main-app/my-account/change-password/change-password.page'
-      ).then((m) => m.ChangePasswordPage),
-  },
-  {
-    path: 'profile',
-    loadComponent: () =>
-      import('./main-app/my-account/profile/profile.page').then(
-        (m) => m.ProfilePage
-      ),
-  },
-  {
-    path: '**',
-    redirectTo: 'login',
-  },
-  {
-    path: 'my-purchases',
-    loadComponent: () => import('./main-app/my-purchases/my-purchases/my-purchases.page').then( m => m.MyPurchasesPage)
-  },
-  {
-    path: 'to-pay',
-    loadComponent: () => import('./main-app/my-purchases/to-pay/to-pay.page').then( m => m.ToPayPage)
-  },
-  {
-    path: 'to-ship',
-    loadComponent: () => import('./main-app/my-purchases/to-ship/to-ship.page').then( m => m.ToShipPage)
-  },
-  {
-    path: 'to-receive',
-    loadComponent: () => import('./main-app/my-purchases/to-receive/to-receive.page').then( m => m.ToReceivePage)
-  },
-  {
-    path: 'completed',
-    loadComponent: () => import('./main-app/my-purchases/completed/completed.page').then( m => m.CompletedPage)
-  },
-  {
-    path: 'cancelled',
-    loadComponent: () => import('./main-app/my-purchases/cancelled/cancelled.page').then( m => m.CancelledPage)
-  },
+  // Global fallback must stay **at the very end**
+  { path: '**', redirectTo: 'login' },
 ];

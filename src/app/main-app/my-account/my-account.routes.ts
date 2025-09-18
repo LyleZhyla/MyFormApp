@@ -9,7 +9,9 @@ export const MY_ACCOUNT_ROUTES: Routes = [
       {
         path: 'profile',
         loadComponent: () =>
-          import('./profile/profile.page').then((m) => m.ProfilePage),
+          import('./profile/profile.page').then(
+            (m) => m.ProfilePage
+        ),
       },
       {
         path: 'banks-and-cards',
@@ -21,7 +23,9 @@ export const MY_ACCOUNT_ROUTES: Routes = [
       {
         path: 'addresses',
         loadComponent: () =>
-          import('./addresses/addresses.page').then((m) => m.AddressesPage),
+          import('./addresses/addresses.page').then(
+            (m) => m.AddressesPage
+        ),
       },
       {
         path: 'change-password',
