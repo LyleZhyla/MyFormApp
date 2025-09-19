@@ -2,9 +2,8 @@
   <ion-list>
     <ion-item *ngFor="let order of orders">
       <ion-label>
-        <h2>{{ order.item }}</h2>
-        <p>Order ID: {{ order.id }}</p>
-        <p>Price: ${{ order.price }}</p>
+        <h2>{{ order.product }}</h2>
+        <p>Delivered by: {{ order.deliveredBy }} | Date: {{ order.date }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
