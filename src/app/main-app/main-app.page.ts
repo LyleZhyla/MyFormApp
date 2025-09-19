@@ -1,7 +1,9 @@
 // src/app/main-app/main-app.page.ts
 import { Component, OnDestroy } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { MenuController } from '@ionic/angular';
+import { filter, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import {
   IonApp,
   IonSplitPane,
@@ -15,16 +17,9 @@ import {
   IonIcon,
   IonLabel,
   IonRouterOutlet,
+  IonButtons,
+  IonMenuButton
 } from '@ionic/angular/standalone';
-import { MenuController } from '@ionic/angular';
-import { addIcons } from 'ionicons';
-import {
-  homeOutline,
-  personCircleOutline,
-  bagHandleOutline,
-  logOutOutline,
-} from 'ionicons/icons';
-import { Subscription, filter } from 'rxjs';
 
 @Component({
   selector: 'app-main-app',
@@ -33,7 +28,6 @@ import { Subscription, filter } from 'rxjs';
   styleUrls: ['./main-app.page.scss'],
   imports: [
     CommonModule,
-    RouterModule,
     IonApp,
     IonSplitPane,
     IonMenu,
@@ -46,6 +40,8 @@ import { Subscription, filter } from 'rxjs';
     IonIcon,
     IonLabel,
     IonRouterOutlet,
+    IonButtons,
+    IonMenuButton
   ],
 })
 export class MainAppPage implements OnDestroy {
@@ -53,24 +49,19 @@ export class MainAppPage implements OnDestroy {
   private sub?: Subscription;
 
   constructor(private router: Router, private menuCtrl: MenuController) {
-    // ✅ register icons once
-    addIcons({ homeOutline, personCircleOutline, bagHandleOutline, logOutOutline });
-
-    // ✅ set initial menu state
+    // set initial state
     this.setMenuForUrl(this.router.url);
 
-    // ✅ listen to route changes
+    // react to navigation changes
     this.sub = this.router.events
-      .pipe(filter((e: any): e is NavigationEnd => e instanceof NavigationEnd))
-      .subscribe((e) => this.setMenuForUrl(e.urlAfterRedirects));
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe(e => this.setMenuForUrl(e.urlAfterRedirects));
   }
 
   private async setMenuForUrl(url: string) {
+    // If URL starts with /main-app/home, allow menu; else disable and close it.
     this.isHome = url.startsWith('/main-app/home');
-
-    // enable menu only on home
     await this.menuCtrl.enable(this.isHome, 'main-menu');
-
     if (!this.isHome) {
       await this.menuCtrl.close('main-menu');
     }

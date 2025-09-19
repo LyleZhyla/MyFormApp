@@ -1,13 +1,11 @@
 <!-- src/app/main-app/main-app.page.html -->
 <ion-app>
-  <!-- Split pane renders the menu only on Home.
-       On other pages it is disabled and not interactive. -->
-  <ion-split-pane [when]="isHome ? 'md' : false" contentId="main-content">
+  <!-- Split pane: shows persistent menu on large screens (md) -->
+  <ion-split-pane when="md" contentId="main-content">
+    <!-- ion-menu is always present (overlay on mobile) but we enable/disable it from TS -->
     <ion-menu contentId="main-content" menuId="main-menu" [disabled]="!isHome">
       <ion-header>
-        <ion-toolbar color="primary">
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
+        <ion-toolbar color="primary"><ion-title>Menu</ion-title></ion-toolbar>
       </ion-header>
 
       <ion-content>
@@ -35,7 +33,7 @@
       </ion-content>
     </ion-menu>
 
-    <!-- All pages render here -->
+    <!-- main content area -->
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
