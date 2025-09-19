@@ -1,9 +1,35 @@
-// src/app/home/home.page.ts
+// src/app/main-app/home/home.page.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, MenuController } from '@ionic/angular';
-import { RouterModule } from '@angular/router'; // ✅ Import this for routerLink
+
+// Import Ionic standalone components used in home.page.html
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonAvatar,
+  IonIcon,
+  IonRange,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonButton,
+  IonFooter,
+  IonLabel,
+  IonButtons,
+  IonMenuButton
+} from '@ionic/angular/standalone';
+
+import { addIcons } from 'ionicons';
+import { cashOutline, cartOutline } from 'ionicons/icons';
 
 @Component({
   standalone: true,
@@ -12,16 +38,35 @@ import { RouterModule } from '@angular/router'; // ✅ Import this for routerLin
   styleUrls: ['./home.page.scss'],
   imports: [
     CommonModule,
-    IonicModule,
     FormsModule,
-    RouterModule, // ✅ Required for routerLink
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonList,
+    IonItem,
+    IonAvatar,
+    IonIcon,
+    IonRange,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonButton,
+    IonFooter,
+    IonLabel,
+    IonButtons,
+    IonMenuButton,
   ],
 })
 export class HomePage implements OnInit {
   user = {
     name: 'John Doe',
     email: 'johndoe@example.com',
-    profilePic: 'https://placehold.co/100x100/512399/FFFFFF?text=JD',
+    profilePic: 'https://placehold.co/100x100/512399/FFFFFF?text=JD'
   };
 
   priceRange: any = { lower: 0, upper: 200 };
@@ -72,23 +117,17 @@ export class HomePage implements OnInit {
 
   filteredProducts: any[] = [];
 
-  constructor(private menuCtrl: MenuController) {} // ✅ Inject MenuController
+  constructor() {
+    addIcons({ cashOutline, cartOutline });
+  }
 
   ngOnInit() {
-    // show all products initially
-    this.filteredProducts = [...this.products];
+    this.filterProducts();
   }
 
-  // ✅ Explicit filter function
   filterProducts() {
     this.filteredProducts = this.products.filter(
-      (p) =>
-        p.price >= this.priceRange.lower && p.price <= this.priceRange.upper
+      (p) => p.price >= this.priceRange.lower && p.price <= this.priceRange.upper
     );
-  }
-
-  // ✅ Open the side menu
-  openMenu() {
-    this.menuCtrl.open('main-menu');
   }
 }

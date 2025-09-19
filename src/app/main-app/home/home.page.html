@@ -1,8 +1,12 @@
+<!-- src/app/main-app/home/home.page.html -->
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>E-Commerce Home</ion-title>
+    <ion-title>E-Benta Home</ion-title>
     <ion-buttons slot="end">
-      <ion-menu-button menu ="main-menu"></ion-menu-button>
+      <!-- Menu button for side menu -->
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+
+      <!-- Profile button -->
       <ion-button>
         <ion-icon name="person-circle-outline" slot="icon-only"></ion-icon>
       </ion-button>
@@ -11,7 +15,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <!-- User Profile -->
+  <!-- User info -->
   <ion-list>
     <ion-item>
       <ion-avatar slot="start">
@@ -25,7 +29,7 @@
     </ion-item>
   </ion-list>
 
-  <!-- Price Range Filter -->
+  <!-- Price filter -->
   <ion-list>
     <ion-item>
       <ion-label position="stacked">Price Range</ion-label>
@@ -44,13 +48,7 @@
     </ion-item>
   </ion-list>
 
-  <p class="ion-text-center">
-    Showing products between
-    <strong>${{ priceRange.lower }}</strong> and
-    <strong>${{ priceRange.upper }}</strong>
-  </p>
-
-  <!-- Products -->
+  <!-- Featured Products -->
   <h2 class="ion-text-center">Featured Products</h2>
   <ion-grid>
     <ion-row>
@@ -69,35 +67,29 @@
             width="300"
             height="200"
           />
-
           <ion-card-header>
             <ion-card-title>{{ product.name }}</ion-card-title>
           </ion-card-header>
-
           <ion-card-content>
-            <p><strong>${{ product.price.toFixed(2) }}</strong></p>
-
+            <p><strong>{{ product.price.toFixed(2) }}</strong></p>
             <ion-button
               expand="block"
               fill="outline"
               color="primary"
               class="ion-margin-top"
-              [routerLink]="['/product-details', product.id]"
             >
               View Details
             </ion-button>
           </ion-card-content>
+
+          <ion-button>
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            Add to Cart
+          </ion-button>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- No products found -->
-  <div *ngIf="filteredProducts.length === 0" class="ion-text-center ion-margin-top">
-    <ion-text color="medium">
-      <p>No products found in this price range.</p>
-    </ion-text>
-  </div>
 </ion-content>
 
 <ion-footer>
