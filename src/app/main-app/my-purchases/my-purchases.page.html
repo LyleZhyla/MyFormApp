@@ -7,16 +7,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-searchbar
-  placeholder="Search by store, order ID, or product"
-  [value]="query()"
-  (ionInput)="onSearchInput($event)">
-</ion-searchbar>
-
 <ion-content>
+  <!-- Searchbar -->
+  <ion-searchbar
+    placeholder="Search by store, order ID, or product"
+    [value]="query()"
+    (ionInput)="onSearchInput($event)">
+  </ion-searchbar>
+
+  <!-- Tabs container -->
   <ion-tabs>
+    <!-- Tab bar -->
     <ion-tab-bar slot="top" class="shop-tabs">
-      
       <ion-tab-button tab="all" routerLink="all">
         <ion-label>All</ion-label>
       </ion-tab-button>
@@ -45,9 +47,9 @@
         <ion-label>Cancelled</ion-label>
         <ion-badge color="danger" *ngIf="cancelledCount">{{ cancelledCount }}</ion-badge>
       </ion-tab-button>
-
     </ion-tab-bar>
 
+    <!-- Tab content -->
     <ion-router-outlet></ion-router-outlet>
   </ion-tabs>
 </ion-content>

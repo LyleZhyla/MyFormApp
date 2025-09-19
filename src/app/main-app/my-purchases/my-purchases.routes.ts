@@ -9,6 +9,12 @@ export const MY_PURCHASES_ROUTES: Routes = [
     children: [
       // ✅ Existing pages
       {
+        path: 'all',
+        loadComponent: () =>
+          import('./order-list/order-list.page').then((m) => m.OrderListPage),
+        data: { status: 'all' },
+      },
+      {
         path: 'to-pay',
         loadComponent: () =>
           import('./to-pay/to-pay.page').then(m => m.ToPayPage),
@@ -35,6 +41,7 @@ export const MY_PURCHASES_ROUTES: Routes = [
       },
 
       // ✅ OrderList with status-based filtering
+      
       {
         path: 'all',
         loadComponent: () =>
@@ -75,7 +82,7 @@ export const MY_PURCHASES_ROUTES: Routes = [
       // ✅ Default redirect
       {
         path: '',
-        redirectTo: 'to-pay',
+        redirectTo: 'all',
         pathMatch: 'full',
       },
     ],

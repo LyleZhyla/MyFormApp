@@ -1,0 +1,23 @@
+<ion-content>
+  <!-- Kung may orders -->
+  <ng-container *ngIf="filtered().length; else empty">
+    <ion-list>
+      <ion-item *ngFor="let o of filtered(); trackBy: trackId">
+        <ion-label>
+          <h2>{{ o.title }}</h2>
+          <p *ngIf="o.variation">Variation: {{ o.variation }}</p>
+          <ion-note color="success" *ngIf="o.deliveredNote">
+            {{ o.deliveredNote }}
+          </ion-note>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <!-- Kung wala -->
+  <ng-template #empty>
+    <ion-text color="medium" class="ion-padding">
+      No orders match your search.
+    </ion-text>
+  </ng-template>
+</ion-content>
