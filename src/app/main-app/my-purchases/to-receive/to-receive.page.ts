@@ -2,16 +2,23 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
+interface Order {
+  id: number;
+  product: string;
+  deliveredBy: string;
+  date: string;
+}
+
 @Component({
   selector: 'app-to-receive',
   standalone: true,
-  templateUrl: './to-receive.page.html',
   imports: [IonicModule, CommonModule],
+  templateUrl: './to-receive.page.html',
 })
 export class ToReceivePage {
-  orders = [
-    { id: 'TR3001', item: 'Gaming Keyboard', price: 79.99 },
-    { id: 'TR3002', item: 'Webcam HD', price: 49.99 },
-    { id: 'TR3003', item: 'Mouse Pad XL', price: 14.99 },
+  orders: Order[] = [
+    { id: 1, product: 'Smartphone Case', deliveredBy: 'LBC', date: '2025-09-13' },
+    { id: 2, product: 'Portable Charger', deliveredBy: 'J&T', date: '2025-09-14' },
+    { id: 3, product: 'Webcam', deliveredBy: '2GO', date: '2025-09-15' },
   ];
 }

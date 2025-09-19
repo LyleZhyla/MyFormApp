@@ -2,16 +2,23 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 
+interface Order {
+  id: number;
+  product: string;
+  amount: number;
+  date: string;
+}
+
 @Component({
   selector: 'app-to-pay',
   standalone: true,
-  templateUrl: './to-pay.page.html',
   imports: [IonicModule, CommonModule],
+  templateUrl: './to-pay.page.html',
 })
 export class ToPayPage {
-  orders = [
-    { id: 'TP1001', item: 'Wireless Mouse', price: 25.99 },
-    { id: 'TP1002', item: 'USB-C Hub', price: 49.99 },
-    { id: 'TP1003', item: 'Laptop Sleeve', price: 19.99 },
+  orders: Order[] = [
+    { id: 1, product: 'Wireless Mouse', amount: 500, date: '2025-09-15' },
+    { id: 2, product: 'Bluetooth Headphones', amount: 1200, date: '2025-09-16' },
+    { id: 3, product: 'USB-C Hub', amount: 800, date: '2025-09-17' },
   ];
 }
