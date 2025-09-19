@@ -1,3 +1,4 @@
+<!-- src/app/main-app/my-purchases/my-purchases.page.html -->
 <ion-header>
   <ion-toolbar color="light">
     <ion-buttons slot="start">
@@ -7,49 +8,48 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-searchbar
-  placeholder="Search by store, order ID, or product"
-  [value]="query()"
-  (ionInput)="onSearchInput($event)">
-</ion-searchbar>
-
 <ion-content>
+  <!-- searchbar inside content so it scrolls with page and pushes tabs/content down -->
+  <ion-searchbar
+    placeholder="Search by store, order ID, or product"
+    [value]="query()"
+    (ionInput)="onSearchInput($event)">
+  </ion-searchbar>
 
-  <!-- Tabs container -->
   <ion-tabs>
-    <!-- Tab bar -->
-    <ion-tab-bar slot="top" class="shop-tabs">
+    <ion-tab-bar class="shop-tabs">
       <ion-tab-button tab="all" routerLink="all">
         <ion-label>All</ion-label>
+        <ion-badge *ngIf="allCount()" color="medium">{{ allCount() }}</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="to-pay" routerLink="to-pay">
         <ion-label>To Pay</ion-label>
-        <ion-badge color="danger" *ngIf="toPayCount">{{ toPayCount }}</ion-badge>
+        <ion-badge *ngIf="toPayCount()" color="danger">{{ toPayCount() }}</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="to-ship" routerLink="to-ship">
         <ion-label>To Ship</ion-label>
-        <ion-badge color="danger" *ngIf="toShipCount">{{ toShipCount }}</ion-badge>
+        <ion-badge *ngIf="toShipCount()" color="danger">{{ toShipCount() }}</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="to-receive" routerLink="to-receive">
         <ion-label>To Receive</ion-label>
-        <ion-badge color="danger" *ngIf="toReceiveCount">{{ toReceiveCount }}</ion-badge>
+        <ion-badge *ngIf="toReceiveCount()" color="danger">{{ toReceiveCount() }}</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="completed" routerLink="completed">
         <ion-label>Completed</ion-label>
-        <ion-badge color="success" *ngIf="completedCount">{{ completedCount }}</ion-badge>
+        <ion-badge *ngIf="completedCount()" color="success">{{ completedCount() }}</ion-badge>
       </ion-tab-button>
 
       <ion-tab-button tab="cancelled" routerLink="cancelled">
         <ion-label>Cancelled</ion-label>
-        <ion-badge color="danger" *ngIf="cancelledCount">{{ cancelledCount }}</ion-badge>
+        <ion-badge *ngIf="cancelledCount()" color="danger">{{ cancelledCount() }}</ion-badge>
       </ion-tab-button>
     </ion-tab-bar>
 
-    <!-- Tab content -->
+    <!-- child route contents (each child is order-list with different status) -->
     <ion-router-outlet></ion-router-outlet>
   </ion-tabs>
 </ion-content>

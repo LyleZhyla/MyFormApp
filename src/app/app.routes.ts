@@ -67,6 +67,11 @@ export const routes: Routes = [
         redirectTo: 'home',
         pathMatch: 'full',
       },
+      {
+        path: 'my-purchases',
+        loadChildren: () =>
+          import('./main-app/my-purchases/my-purchases.routes').then(m => m.MY_PURCHASES_ROUTES),
+      }
     ],
   },
 

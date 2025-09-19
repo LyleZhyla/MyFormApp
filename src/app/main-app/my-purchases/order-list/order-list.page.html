@@ -1,21 +1,22 @@
-<!-- No child header; parent owns header + tabbar -->
+<!-- src/app/main-app/my-purchases/order-list/order-list.page.html -->
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let o of filtered()">
-      <ion-icon [name]="o.icon" slot="start" size="large"></ion-icon>
-      <ion-label>
-        <ion-chip color="medium" outline="true">{{ o.store }}</ion-chip>
-        <ion-chip color="primary" outline="true">Chat</ion-chip>
+  <ng-container *ngIf="filtered().length; else empty">
+    <ion-list>
+      <ion-item *ngFor="let o of filtered(); trackBy: trackId">
+        <ion-icon [name]="o.icon" slot="start" size="large"></ion-icon>
+        <ion-label class="ion-text-wrap">
+          <ion-chip color="medium" outline="true">{{ o.store }}</ion-chip>
+          <ion-chip color="primary" outline="true">Chat</ion-chip>
+          <h2 class="ion-margin-top">{{ o.title }}</h2>
+          <p *ngIf="o.variation">Variation: {{ o.variation }}</p>
+          <p>x{{ o.qty }} • ₱{{ o.price | number:'1.2-2' }}</p>
+          <ion-note color="success" *ngIf="o.deliveredNote">{{ o.deliveredNote }}</ion-note>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
 
-        <h2 class="ion-margin-top">{{ o.title }}</h2>
-
-        <p *ngIf="o.variation">Variation: {{ o.variation }}</p>
-        <p>x{{ o.qty }} • {{ o.price | number:'1.2-2' }}</p>
-
-        <ion-note color="success" *ngIf="o.deliveredNote">
-          {{ o.deliveredNote }}
-        </ion-note>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ng-template #empty>
+    <ion-text color="medium" class="ion-padding">No orders match your search.</ion-text>
+  </ng-template>
 </ion-content>

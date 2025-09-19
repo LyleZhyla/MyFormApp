@@ -1,7 +1,7 @@
-import { Component, computed, inject, signal } from '@angular/core';
+// src/app/main-app/my-purchases/order-list/order-list.page.ts
+import { Component, computed, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ALL_ORDERS, Order, OrderStatus } from '../orders.data';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -13,40 +13,34 @@ type StatusOrAll = OrderStatus | 'all';
   standalone: true,
   selector: 'app-order-list',
   templateUrl: './order-list.page.html',
-  styleUrls: ['./order-list.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule],
 })
 export class OrderListPage {
   private route = inject(ActivatedRoute);
 
-  // status from route data (default: "all")
-  status: StatusOrAll =
-    (this.route.snapshot.data?.['status'] as StatusOrAll) ?? 'all';
+  status: StatusOrAll = (this.route.snapshot.data?.['status'] as StatusOrAll) ?? 'all';
 
-  // query from query params
-  private query = toSignal(
-    this.route.queryParams.pipe(map(params => params['q'] || ''))
+  // watch q query param
+  private qSignal = toSignal(this.route.queryParams.pipe(map(p => p['q'] || '')));
+
+  // source filtered by status
+  private source = computed<Order[]>(() =>
+    this.status === 'all' ? ALL_ORDERS : ALL_ORDERS.filter(o => o.status === this.status)
   );
 
-  // base source depending on status
-  private source = computed<Order[]>(() => {
-    if (this.status === 'all') {
-      return ALL_ORDERS;
-    }
-    return ALL_ORDERS.filter(o => o.status === this.status);
-  });
-
-  // final filtered list
+  // final filtered by q
   filtered = computed<Order[]>(() => {
-    const q = this.query()?.toLowerCase().trim();
+    const q = (this.qSignal() || '').toLowerCase().trim();
     const base = this.source();
     if (!q) return base;
-
-    return base.filter(
-      o =>
-        o.title.toLowerCase().includes(q) ||
-        o.store.toLowerCase().includes(q) ||
-        o.id.toString().includes(q) // ✅ fixed id check
+    return base.filter(o =>
+      o.title.toLowerCase().includes(q) ||
+      o.store.toLowerCase().includes(q) ||
+      o.id.toLowerCase().includes(q)
     );
   });
+
+  trackId(index: number, item: Order) {
+    return item.id;
+  }
 }

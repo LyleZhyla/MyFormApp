@@ -43,8 +43,6 @@ export const MY_PURCHASES_ROUTES: Routes = [
           import('./order-list/order-list.page').then(m => m.OrderListPage),
         data: { status: 'cancelled' },
       },
-
-      // ✅ Default redirect
       {
         path: '',
         redirectTo: 'all',
