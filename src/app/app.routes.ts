@@ -1,8 +1,7 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // Default redirect → login first
+  // Default redirect → login
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Auth pages
@@ -14,14 +13,18 @@ export const routes: Routes = [
   {
     path: 'registration',
     loadComponent: () =>
-      import('./registration/registration.page').then(m => m.RegistrationPage),
+      import('./registration/registration.page').then(
+        m => m.RegistrationPage
+      ),
   },
 
-  // Product flow (outside main-app)
+  // Product flow
   {
     path: 'product-list',
     loadComponent: () =>
-      import('./product-list/product-list.page').then(m => m.ProductListPage),
+      import('./product-list/product-list.page').then(
+        m => m.ProductListPage
+      ),
   },
   {
     path: 'category-details',
@@ -38,7 +41,7 @@ export const routes: Routes = [
       ),
   },
 
-  // Main app wrapper (side menu + tabs)
+  // Main app wrapper
   {
     path: 'main-app',
     loadComponent: () =>
@@ -63,11 +66,14 @@ export const routes: Routes = [
             m => m.MY_PURCHASES_ROUTES
           ),
       },
-      // Default inside main-app → home
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
     ],
   },
 
-  // Global fallback (MUST be last)
+  // Global fallback → login
   { path: '**', redirectTo: 'login' },
 ];

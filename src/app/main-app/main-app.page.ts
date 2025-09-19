@@ -39,9 +39,7 @@ import {
     IonItem,
     IonIcon,
     IonLabel,
-    IonRouterOutlet,
-    IonButtons,
-    IonMenuButton
+    IonRouterOutlet
   ],
 })
 export class MainAppPage implements OnDestroy {
